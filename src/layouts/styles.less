@@ -1,0 +1,710 @@
+.pageContent {
+  width: 100%;
+  padding-top: 40px;
+  overflow-y: auto;
+  height: 100%;
+}
+.pageContent .box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.pageLesf {
+  // position: absolute;
+  // top: 0;;
+  // left: 0;
+  // bottom: 0;
+  width: 40px;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  overflow-x: hidden;
+  padding-bottom: 85px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px -1px 5px 0px;
+
+  .pageLeftBar {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: calc(100% + 20px);
+
+    .collectMenu {
+      flex: 1 1 0%;
+      padding-left: 10px;
+      overflow: auto;
+      .item {
+        user-select: none;
+        height: 40px;
+        line-height: 40px;
+        display: flex;
+        align-items: center;
+        > span,
+        > a {
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 15px;
+          color: #333;
+        }
+        .itmeIcon {
+          width: 20px;
+          height: 20px;
+          font-size: 20px;
+        }
+        .moveIcon,
+        .deleteIcon {
+          width: 14px;
+          height: 14px;
+        }
+        .deleteIcon {
+          display: none;
+          cursor: pointer;
+        }
+        .moveIcon {
+          cursor: move;
+          display: none;
+        }
+
+        .text {
+          flex: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .opMenu {
+    text-align: center;
+    font-size: 20px;
+    padding: 5px 0;
+    border-top: 1px solid #e4e4e4;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+    white-space: nowrap;
+  }
+}
+.w200 {
+  width: 220px;
+  .item {
+    &:hover .moveIcon,
+    &:hover .deleteIcon {
+      display: inline-block !important;
+    }
+  }
+}
+.pageRight {
+  // position: absolute;
+  // top: 0;
+  // left: 200px;
+  // bottom: 0;
+  // right: 0;
+  height: 100%;
+  max-height: 100%;
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f2f2f2;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  .pageBody {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    // margin-top: 10px;
+    // padding-left: 10px;
+
+    > div {
+      background-color: #fff;
+      padding:5px 9px;
+      min-height: 100%;
+    }
+  }
+
+  .pageFooter {
+    // position: fixed;
+    // width: 100%;
+    // right: 0;
+    // bottom: 0;
+
+    margin-left: 1px;
+    // margin-top: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 5px 0px;
+    z-index: 1;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #fff;
+    :global {
+      .ant-btn {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+.pageLesf +.pageRight{
+  .pageBody {
+    // margin-top: 10px;
+    // padding-left: 10px;
+  }
+}
+//下面是头部的样式
+
+.headContent {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 998;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px -1px 5px 0px;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 40px;
+  // background: red;
+  .headContentLeft {
+    span {
+      display: inline-block;
+    }
+    .title {
+      margin-left: 20px;
+      font-size: 20px;
+      color: #f48000;
+      font-weight: bold;
+      vertical-align: middle;
+    }
+    .leftIcon {
+      vertical-align: middle;
+      width: 40px;
+      height: 40px;
+      background-color: #f48000;
+      font-size: 22px;
+      color: #fff;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer;
+      .xian{
+        display: block;
+        position: absolute;
+        left: 10px;
+        width: 20px;
+        height: 2px;
+        background: rgb(255, 255, 255);
+        transition: all 0.3s ease-out 0s;
+      }
+      .xian:first-child {
+        top: 12px;
+        transform-origin: left center;
+        transform: rotate(0deg);
+      }
+      .xian:nth-child(2) {
+        top: 19px;
+      }
+      .xian:nth-child(3) {
+        top: 26px;
+        transform-origin: left center;
+        transform: rotate(0deg);
+      }
+    }
+  }
+
+  .right {
+    margin-right: 20px;
+
+    span {
+      display: inline-block;
+      cursor: pointer;
+      margin-right: 15px;
+    }
+  }
+}
+.logout {
+  cursor: pointer;
+}
+//滑动菜单
+.allMenuBox {
+  position: fixed;
+  top: 41px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  display: flex;
+  width: 0px;
+  overflow: hidden;
+  .asideShow {
+    position: relative;
+    z-index: 10;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 4px 0px;
+    background-color: rgb(255, 255, 255);
+    width: 240px;
+    height: 100%;
+    transition: all 0.25s ease-in-out 0s;
+  }
+  .asideHide {
+    position: relative;
+    z-index: 10;
+    background-color: rgb(255, 255, 255);
+    width: 240px;
+    height: 100%;
+    transform: translateX(-100%);
+    transition: all 0.25s ease-in-out 0s;
+  }
+  .menuBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    .loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding-top: 70px;
+      left: 100px;
+    }
+    .allMenuBtn {
+      cursor: pointer;
+      padding: 10px;
+      border-bottom: 1px solid #e4e4e4;
+      position: relative;
+      .text {
+        padding-left: 15px;
+      }
+      .RightOutlined {
+        position: absolute;
+        right: 20px;
+        font-size: 12px;
+      }
+    }
+    .collectMenu {
+      flex: 1 1 0%;
+      padding-left: 8px;
+      overflow: auto;
+      .item {
+        user-select: none;
+        height: 40px;
+        line-height: 40px;
+        display: flex;
+        align-items: center;
+        > span,
+        > a {
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 15px;
+          color: #333;
+        }
+        .itmeIcon,
+        .moveIcon,
+        .deleteIcon {
+          width: 14px;
+          height: 14px;
+        }
+        .deleteIcon {
+          display: none;
+          cursor: pointer;
+        }
+        .moveIcon {
+          cursor: move;
+          display: none;
+        }
+        &:hover .moveIcon,
+        &:hover .deleteIcon {
+          display: inline-block;
+        }
+        .text {
+          flex: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          cursor: pointer;
+        }
+      }
+    }
+    div[role='presentation'] {
+      flex: 1 1;
+      padding-left: 8px;
+      overflow: auto;
+    }
+  }
+  .mask {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+}
+//以下是所有菜单的样式
+.showAllMenu {
+  height: 100%;
+  display: block;
+  position: relative;
+  z-index: 5;
+  background-color: rgb(247, 247, 247);
+  min-width: 490px;
+  max-width: 980px;
+  flex: 1 1 0%;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0, 0, 0.2, 1) 0s;
+  .box {
+    display: flex;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 32px 0px 0px 32px;
+    overflow: hidden;
+    .left {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      flex: 1 1 0%;
+      overflow: hidden;
+      .search {
+        padding: 20px;
+      }
+      .menuListBox {
+        flex: 1 1 0%;
+        padding: 0px 32px 32px 0px;
+        overflow: auto;
+        position: relative;
+        .menuList {
+          column-count: 3;
+          column-width: 200px;
+          column-gap: 12px;
+          margin-bottom: 12px;
+          .item {
+            display: inline-block;
+            margin-bottom: 20px;
+            width: 100%;
+            break-inside: avoid;
+            .title {
+              font-size: 14px;
+              font-weight: bold;
+              padding: 5px;
+            }
+            .selectTitle {
+              font-size: 14px;
+              font-weight: bold;
+              background-color: #f48000;
+              color: #fff;
+              padding: 5px;
+            }
+            .content {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              height: 33px;
+              line-height: 33px;
+              font-size: 12px;
+              padding-left: 5px;
+              position: relative;
+              &:hover {
+                background-color: #f1f1f1;
+              }
+              a {
+                color: #333;
+              }
+              .icon {
+                display: none;
+                cursor: pointer;
+              }
+              &:hover .icon {
+                display: block;
+                // position: absolute;
+                width: 25px;
+                height: 33px;
+                line-height: 33px;
+                font-size: 16px;
+                // top: 0;
+                // right: 16px;
+                color: #28cdff;
+              }
+              .collect {
+                // position: absolute;
+                width: 25px;
+                height: 33px;
+                line-height: 33px;
+                font-size: 16px;
+                // top: 0;
+                // right: 16px;
+                color: #f48000;
+                cursor: pointer;
+              }
+            }
+          }
+          .selectItme{
+            background-color: #ffdeba;
+          }
+        }
+      }
+    }
+    .right {
+      padding-top: 32px;
+      width: 160px;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      box-sizing: border-box;
+      .ul {
+        padding-left: 30px;
+        li {
+          padding: 0 0 0 5px;
+          margin: 8px 0;
+          &:hover {
+            border-left: #f48000 solid 1px;
+            color: #f49000;
+          }
+        }
+        .check {
+          border-left: #f48000 solid 1px;
+          color: #f49000;
+        }
+      }
+      .span {
+        font-size: 12px;
+        cursor: pointer;
+      }
+    }
+  }
+  .close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
+.hideAllMenu {
+  position: relative;
+  z-index: 5;
+  background-color: rgb(247, 247, 247);
+  min-width: 490px;
+  max-width: 980px;
+  transform: translateX(-1340px);
+  flex: 1 1 0%;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0, 0, 0.2, 1) 0s;
+}
+
+.show {
+  width: 100%;
+  overflow: auto;
+}
+.warehouseBox{
+  display: flex;
+  margin-left: -16px;
+  margin-right: -16px;
+
+  .list{
+    width: 170px;
+    box-sizing: border-box;
+    border-right: 1px solid #e4e4e4;
+    // padding-left: 5px;
+    // padding-right: 5px;
+    // &:first-child{
+    //   padding-left: 5px;
+    // }
+    &:last-child{
+      border-right: 0 solid #e4e4e4;
+    }
+    .name{
+      height: 33px;
+      line-height: 33px;
+      font-weight: bold;
+      background-color: #ededed;
+      font-size: 14px;
+      margin: 0;
+      padding-left: 5px;
+    }
+    .name2{
+      margin: 0;
+      padding-left: 14px;
+      font-weight: 600;
+      height: 30px;
+      line-height: 30px;
+    }
+    .name3{
+      margin: 0;
+      padding-left: 28px;
+      height: 30px;
+      line-height: 30px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      &:hover{
+        color: #1890ff
+      }
+    }
+  }
+}
+
+//ReportMenu组件的样式
+.reportMenu{
+  position: fixed;
+  top: 40px;
+  left: 0;
+  width: 700px;
+  bottom: 85px;
+  box-shadow: #afafaf 0px -1px 5px 0px;
+  background-color: #fff;
+  z-index: 11;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+  transform: translateX(-100%);
+  .spin{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .reportMenuBar {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 220px;
+    border-right: 1px solid #e4e4e4;
+    float: left;
+    .mItem{
+      margin: 0;
+      padding-left: 40px;
+      position: relative;
+      
+      a{
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        &::before{
+          content: none
+        }
+      }
+
+      .deleteIcon{
+        display: none;
+        cursor: pointer;
+      }
+      &:hover{
+        a{
+          width: 90%;
+        }
+        .deleteIcon{
+          display: inline-block;
+        } 
+      }
+    }
+  }
+  .reportMenuAll {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 480px;
+    float: right;
+    // background-color: #28cdff;
+  }
+  .head{
+    height:45px ;
+  }
+  .body{
+    height: calc(100% - 45px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-column-count: 2;
+    -webkit-column-width: 190px;
+    columns: 240px 2;
+    grid-column-gap: 0;
+    -webkit-column-gap: 0;
+    column-gap: 0;
+    margin-bottom: 0;
+    .classes{
+      display: inline-block;
+      margin-bottom: 20px;
+      width: 100%;
+      page-break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      break-inside: avoid;
+      padding-left: 20px;
+      ul{
+        padding: 0;
+        margin: 0;
+      }
+      .tit{
+        font-size: 14px;
+        font-weight: bold;
+        padding: 5px;
+      }
+      .menuItem{
+        height: 33px;
+        line-height: 33px;
+        font-size: 12px;
+        padding-left: 5px;
+        position: relative;
+        &:hover{
+          background-color: #f1f1f1;
+          .icon{
+            display: block;
+            position: absolute;
+            width: 25px;
+            height: 33px;
+            line-height: 33px;
+            font-size: 16px;
+            top: 0;
+            right: 16px;
+            color: #28cdff;
+          }
+        }
+        a{
+          color: #333;
+        }
+        .collect{
+          // position: absolute;
+          width: 25px;
+          height: 33px;
+          line-height: 33px;
+          font-size: 16px;
+          top: 0;
+          right: 16px;
+          color: #f48000;
+          cursor: pointer;
+        }
+        .icon{
+          display: none;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+:global{
+  #ppi-container{
+    height: 100%;
+    >div{
+      height: 100%;
+
+    }
+  }
+  #mdm-container{
+    height: 100%;
+    >div{
+      height: 100%;
+
+    }
+  }
+}
