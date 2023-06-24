@@ -19,6 +19,7 @@ const Mdm = () => {
             container: '#mdm-container',
         });
         return () => {
+            //如果不将其销毁的话，第二次加载时会渲染不出来
             microApp.unmount();
 
         }
